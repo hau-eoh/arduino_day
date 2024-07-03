@@ -60,6 +60,7 @@
     const li = document.createElement('li');
     li.textContent = JSON.stringify(abc);
     document.getElementById('value_config').appendChild(li);
+    document.getElementById("myText").innerHTML = abc;
     });
 
   eraWidget.onValues((values) => {
@@ -86,6 +87,7 @@
     document.write(abc)
   </script>
 </h1>
+<h1>"The value for number is__: " <span id="myText"></span></h1>
 
 <div>
   <h3 class="box box1">Nhiệt độ phòng:<div id ="value_config", style="color: black;"></div></h3>
