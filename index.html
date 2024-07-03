@@ -1,65 +1,32 @@
-<!DOCTYPE html>
 <html>
-    <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
 <head>
-<title>Page Title</title>
-
-<style>
-    body {
-        background-image: url("Arduino_Day_Layout.jpg");
-        background-color: #ffffff;
-        background-size: cover;
-        img 
-        {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            z-index: -1;
-        }
-    }
-    .box {
-        width: fit-content;
-        height: cover;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .box1{
-        background-color: rgb(0, 26, 255);
-    }
-    h2{
-        position: relative;
-        top:75px;
-        left: 400px;
-        font-size: small;
-    }
-
-</style>
-
+  <title>Test iFrame widget</title>
 </head>
-
 <body>
-    
-    <script>
-        const eraWidget = new EraWidget({
-        onConfiguration: (configuration) => {
-        console.log('configuration', configuration);
-        },
-        onValues: (values) => {
-        console.log("test step value");
-        console.log('values', values);
-         },
-        });
-      </script>
-    <div>
-        <h1 style="color: red"> E-Ra Arduino Day.</h1>
-    </div>
-    <div>
-        <h2 class="box box1">Nhiệt độ phòng: <div id="demo" align="center"  value="1"></div></h2>
-    </div>
-    <div>
-        <h2 class="box box1">Độ ẩm phòng: </h2>
-    </div>
+<h1>Test iFrame widget</h1>
+<h2>Realtime configs</h2>
+<ul id="realtime_configs"></ul>
+<h2>History configs</h2>
+<ul id="history_configs"></ul>
+<script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
+<script>
+  const eraWidget = new EraWidget();
+  eraWidget.onConfiguration((configuration) => {
+    document.getElementById('realtime_configs').innerHTML = ''
+    configuration.realtime_configs?.map((config) => {
+      const li = document.createElement('li');
+      li.textContent = JSON.stringify(config);
+      document.getElementById('realtime_configs').appendChild(li);
+    });
+ 
+    document.getElementById('history_configs').innerHTML = ''
+    configuration.history_configs?.map((config) => {
+      const li = document.createElement('li');
+      li.textContent = JSON.stringify(config);
+      document.getElementById('history_configs').appendChild(li);
+    });
+  })
+  eraWidget.ready()
+</script>
 </body>
 </html>
