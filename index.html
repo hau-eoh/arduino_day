@@ -7,7 +7,8 @@
 <h2>Realtime configs</h2>
 <ul id="realtime_configs"></ul>
 <h2>Value configs</h2>
-  <ul id="value_config"></ul>
+<div id ="value_config"></div>
+  <!-- <ul id="value_config"></ul> -->
 <h2>History configs</h2>
 <ul id="history_configs"></ul>
 <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
@@ -16,6 +17,7 @@
   eraWidget.onValues((values) => {
     console.log('aaaadsadsa', values, values[1034]?.value);
     var abc = values[1034]?.value;
+    const li = document.createElement('li');
     li.textContent = JSON.stringify(abc);
     document.getElementById('value_config').appendChild(li);
   });
