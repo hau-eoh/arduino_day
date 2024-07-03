@@ -6,7 +6,7 @@
 <h1>Test iFrame widget</h1>
 <h2>Realtime configs</h2>
 <ul id="realtime_configs"></ul>
-<h2>Value configs</h2>
+<h2>Value configss</h2>
 <div id ="value_config"></div>
   <!-- <ul id="value_config"></ul> -->
 <h2>History configs</h2>
@@ -15,12 +15,19 @@
 <script>
   const eraWidget = new EraWidget();
   eraWidget.onValues((values) => {
+    onConfiguration: (configuration) => {
+      onValues: (value) => {
+        var temp = values
+        console.log('value temp hua', temp);
+      }
+    }
     console.log('aaaadsadsa', values, values[1034]?.value);
     var abc = values[1034]?.value;
     const li = document.createElement('li');
     li.textContent = JSON.stringify(abc);
     document.getElementById('value_config').appendChild(li);
-  });
+    });
+
   eraWidget.onConfiguration((configuration) => {
     console.log('value config', configuration)
     document.getElementById('realtime_configs').innerHTML = ''
