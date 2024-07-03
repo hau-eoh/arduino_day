@@ -41,11 +41,51 @@
 <body>
     <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
     <script>
-        console.log("abcdddd");
+        console.log("anhbang");
+  const eraWidget = new EraWidget();
+  eraWidget.onConfiguration((config) => {
+    console.log(config)
+    eraWidget.requestHistories(
+      new Date().getTime() - 1000 * 60 * 60 * 24,
+      new Date().getTime()
+    )
+  })
+        console.log("anhbang2");
+  eraWidget.onHistories((histories) => {
+    const categories = histories.map((item) => item.name);
+    const temperatures = []
+    const summarySeries = histories.map((item) => {
+      const timeByTemp = {};
+      item.data?.map((dataItem) => {
+        const [temp, time] = JSON.parse(dataItem.y);
+        if (!temperatures.includes(temp)) {
+          temperatures.push(temp);
+        }
+        if (!timeByTemp[temp]) {
+          timeByTemp[temp] = 0;
+        }
+        timeByTemp[temp] += time;
+      });
+      return timeByTemp;
+    });
+    const series = temperatures.sort().map((temp) => {
+      return {
+        name: temp,
+        data: summarySeries.map((item) => item[temp] || 0),
+      };
+    });
+  })
+  eraWidget.ready();
+  eraWidget.requestAdjustMobileHeight(500);
+</script>
+    console.log("abcd1");
+    <script>
+        console.log("abcd2");
         const eraWidget = new EraWidget();
         let config = null;
         eraWidget.onConfiguration((configuration) => {
           config = configuration.realtime_configs[0];
+          console.log("config value", config);
         })
         eraWidget.onValues((values) => {
           var value = document.getElementById('demo').getAttribute(config);
