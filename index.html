@@ -47,7 +47,7 @@
           config = configuration.realtime_configs[0];
         })
         eraWidget.onValues((values) => {
-          const input = document.getElementById('value_temp');
+          var value = document.getElementById('demo').getAttribute(value_temp);
         //   input.checked = values[config.id].value;
         });
         eraWidget.ready()
@@ -56,7 +56,7 @@
         <h1 style="color: red"> E-Ra Arduino Day.</h1>
     </div>
     <div>
-        <h2 class="box box1">Nhiệt độ phòng: <div id="value_temp"></div></h2>
+        <h2 class="box box1">Nhiệt độ phòng: <div id="demo" align="center"  value_temp="1"></div></h2>
     </div>
     <div>
         <h2 class="box box1">Độ ẩm phòng: </h2>
