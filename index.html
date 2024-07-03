@@ -15,7 +15,9 @@
   const eraWidget = new EraWidget();
   eraWidget.onValues((values) => {
     console.log('aaaadsadsa', values, values[1034]?.value);
-    document.getElementById('value_config').appendChild(values[1034]?.value);
+    var abc = values[1034]?.value;
+    li.textContent = JSON.stringify(abc);
+    document.getElementById('value_config').appendChild(li);
   });
   eraWidget.onConfiguration((configuration) => {
     console.log('value config', configuration)
