@@ -41,13 +41,14 @@
 <body>
     <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
     <script>
+        console.log("abcdddd");
         const eraWidget = new EraWidget();
         let config = null;
         eraWidget.onConfiguration((configuration) => {
           config = configuration.realtime_configs[0];
         })
         eraWidget.onValues((values) => {
-          var value = document.getElementById('demo').getAttribute(value_temp);
+          var value = document.getElementById('demo').getAttribute(config);
           console.log("abc", value);
         //   input.checked = values[config.id].value;
         });
@@ -57,7 +58,7 @@
         <h1 style="color: red"> E-Ra Arduino Day.</h1>
     </div>
     <div>
-        <h2 class="box box1">Nhiệt độ phòng: <div id="demo" align="center"  value_temp="1"></div></h2>
+        <h2 class="box box1">Nhiệt độ phòng: <div id="demo" align="center"  value="1"></div></h2>
     </div>
     <div>
         <h2 class="box box1">Độ ẩm phòng: </h2>
