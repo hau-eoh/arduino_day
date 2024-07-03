@@ -2,12 +2,44 @@
 <head>
   <title>Test iFrame widget</title>
 </head>
+<style>
+  body {
+      background-image: url("Arduino_Day_Layout.jpg");
+      background-color: #ffffff;
+      background-size: cover;
+      img 
+      {
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          z-index: -1;
+      }
+  }
+  .box {
+      width: fit-content;
+      height: cover;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .box1{
+      background-color: rgb(0, 26, 255);
+  }
+  h3{
+      position: relative;
+      top:75px;
+      left: 400px;
+      font-size: small;
+  }
+
+</style>
 <body>
 <h1>Test iFrame widget</h1>
 <h2>Realtime configs</h2>
 <ul id="realtime_configs"></ul>
 <h2>Value configss</h2>
-<div id ="value_config"></div>
+
 <h2>Value configss with string</h2>
 <ul id="value_config"></ul>
 <h2>History configs</h2>
@@ -29,23 +61,28 @@
     document.getElementById('value_config').appendChild(li);
     });
 
-  eraWidget.onConfiguration((configuration) => {
-    console.log('value config', configuration)
-    document.getElementById('realtime_configs').innerHTML = ''
-    configuration.realtime_configs?.map((config) => {
-      const li = document.createElement('li');
-      li.textContent = JSON.stringify(config);
-      document.getElementById('realtime_configs').appendChild(li);
-    });
- 
-    document.getElementById('history_configs').innerHTML = ''
-    configuration.history_configs?.map((config) => {
-      const li = document.createElement('li');
-      li.textContent = JSON.stringify(config);
-      document.getElementById('history_configs').appendChild(li);
-    });
+  eraWidget.onValues((values) => {
+    onConfiguration: (configuration) => {
+      onValues: (value) => {
+        var humi = value
+        console.log('value humi is', humi);
+      }
+    }
+    var humi2 = values[1041]?.value;
+    const li = document.createElement('lihu');
+    lihu.textContent = JSON.stringify(humi2);
+    document.getElementById('humi_config').appendChild(lihu);
   })
   eraWidget.ready()
 </script>
+<div>
+  <h1 style="color: red"> E-Ra Arduino Day.</h1>
+</div>
+<div>
+  <h3 class="box box1">Nhiệt độ phòng: <div id ="value_config"></div></h3>
+</div>
+<div>
+  <h3 class="box box1">Độ ẩm phòng: <div id="humi_config"></div></h3>
+</div>
 </body>
 </html>
