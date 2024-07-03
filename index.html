@@ -44,15 +44,13 @@
     <script>
         const eraWidget = new EraWidget({
         onConfiguration: (configuration) => {
-    console.log('configuration', configuration);
-  },
-  onHistory: (history) => {
-    console.log('history', history);
-  },
-  onValues: (values) => {
-    console.log('values', values);
-  },
-});
+        console.log('configuration', configuration);
+        },
+        onValues: (values) => {
+        console.log("test step value");
+        console.log('values', values);
+         },
+        });
       </script>
     <div>
         <h1 style="color: red"> E-Ra Arduino Day.</h1>
