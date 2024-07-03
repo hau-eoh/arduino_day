@@ -6,6 +6,7 @@
 <h1>Test iFrame widget</h1>
 <h2>Realtime configs</h2>
 <ul id="realtime_configs"></ul>
+<h2>Value configs</h2>
   <ul id="value_config"></ul>
 <h2>History configs</h2>
 <ul id="history_configs"></ul>
@@ -13,8 +14,8 @@
 <script>
   const eraWidget = new EraWidget();
   eraWidget.onValues((values) => {
-    console.log('aaaadsadsa', values);
-    document.getElementById('value_config').appendChild(values[1034].value);
+    console.log('aaaadsadsa', values, values[1034]?.value);
+    document.getElementById('value_config').appendChild(values[1034]?.value);
   });
   eraWidget.onConfiguration((configuration) => {
     console.log('value config', configuration)
