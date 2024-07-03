@@ -11,7 +11,11 @@
 <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
 <script>
   const eraWidget = new EraWidget();
+  eraWidget.onValues((values) => {
+    console.log('aaaadsadsa', values);
+  });
   eraWidget.onConfiguration((configuration) => {
+    console.log('value config', configuration)
     document.getElementById('realtime_configs').innerHTML = ''
     configuration.realtime_configs?.map((config) => {
       const li = document.createElement('li');
