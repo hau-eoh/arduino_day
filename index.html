@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+
+<style>
+    body {
+        background-image: url("layout.jpg");
+        background-color: #ffffff;
+        background-size: cover;
+        img 
+        {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: -1;
+        }
+    }
+    .box {
+        width: fit-content;
+        height: cover;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .box1{
+        background-color: rgb(0, 26, 255);
+    }
+    h2{
+        position: relative;
+        top:75px;
+        left: 400px;
+        font-size: small;
+    }
+
+</style>
+
+</head>
+
+<body>
+    <script src="https://www.unpkg.com/@eohjsc/era-widget@1.0.14/src/index.js"></script>
+    <script>
+        const eraWidget = new EraWidget();
+        let config = null;
+        eraWidget.onConfiguration((configuration) => {
+          config = configuration.realtime_configs[0];
+        })
+        eraWidget.onValues((values) => {
+          const input = document.getElementById('value_temp');
+        //   input.checked = values[config.id].value;
+        });
+        eraWidget.ready()
+      </script>
+    <div>
+        <h1 style="color: red"> E-Ra Arduino Day.</h1>
+    </div>
+    <div>
+        <h2 class="box box1">Nhiệt độ phòng: <div id="value_temp"></div></h2>
+    </div>
+    <div>
+        <h2 class="box box1">Độ ẩm phòng: </h2>
+    </div>
+</body>
+</html>
